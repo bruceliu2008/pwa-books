@@ -73,6 +73,7 @@ const angularCacheName = 'pwa_books_app_cache_v1.1';
 
 self.addEventListener('install', (event) => {
     console.log('[ServiceWorker] Install ServiceWorker');
+
     event.waitUntil((
         self.caches.open(appShellCacheName)
             .then((cache) => {
@@ -92,6 +93,7 @@ self.addEventListener('install', (event) => {
 
 self.addEventListener('activate', (event) => {
     console.log('[ServiceWorker] Activate');
+
     event.waitUntil(
         self.caches.keys().then((keyList) => {
             return Promise.all(keyList.map((key) => {
@@ -102,6 +104,7 @@ self.addEventListener('activate', (event) => {
             }));
         })
     );
+
     return self.clients.claim();
 });
 

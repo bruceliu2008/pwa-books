@@ -1,9 +1,9 @@
-import {BaseApiService} from './baseApi';
-import {Book} from '../models/book';
-import {Observable} from 'rxjs/Observable';
-import {Injectable} from '@angular/core';
-import {Http, RequestOptions} from '@angular/http';
-import {LocalStorageService} from './localStorage';
+import { BaseApiService } from './baseApi';
+import { Book } from '../models/book';
+import { Observable } from 'rxjs/Observable';
+import { Injectable } from '@angular/core';
+import { Http, RequestOptions } from '@angular/http';
+import { LocalStorageService } from './localStorage';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -32,12 +32,14 @@ export class BookService extends BaseApiService {
         return this._localStorageService.get(this._storageKey)
             .flatMap((books) => {
                 let bookIndex = books.findIndex((cBook) => cBook.id === book.id);
+
                 if (bookIndex >= 0) {
                     books[bookIndex] = book;
                 }
                 else {
                     books.push(book);
                 }
+
                 return this._localStorageService.set(this._storageKey, books);
             });
     }

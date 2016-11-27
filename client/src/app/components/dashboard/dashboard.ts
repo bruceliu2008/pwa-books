@@ -1,7 +1,7 @@
-import {Component, Injectable, OnInit} from '@angular/core';
-import {NotificationService} from '../../services/notification';
-import {BookService} from '../../services/book';
-import {Book} from '../../models/book';
+import { Component, Injectable, OnInit } from '@angular/core';
+import { NotificationService } from '../../services/notification';
+import { BookService } from '../../services/book';
+import { Book } from '../../models/book';
 
 @Component({
     moduleId: __moduleName,
@@ -9,7 +9,7 @@ import {Book} from '../../models/book';
     templateUrl: 'dashboard.html'
 })
 @Injectable()
-export class DashboarcComponent implements OnInit {
+export class DashboardComponent implements OnInit {
 
     public books: Array<Book>;
 
@@ -19,9 +19,9 @@ export class DashboarcComponent implements OnInit {
     public ngOnInit() {
         this._bookService.list()
             .subscribe((books) => this.books = books,
-                (err) => {
-                    this.books = [];
-                });
+            (err) => {
+                this.books = [];
+            });
     }
 
     public sendNotification() {
@@ -37,7 +37,8 @@ export class DashboarcComponent implements OnInit {
 
     public updateBook(book, read) {
         book.read = read;
+
         this._bookService.update(book)
-            .subscribe(() => {});
+            .subscribe(() => { });
     }
 }
